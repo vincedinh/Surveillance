@@ -5,18 +5,15 @@ using UnityEngine;
 
 public class ControllerScript : MonoBehaviour 
 {
-
-
-	public AudioClip clip;
-	public AudioSource audioSource;
+	public Transform Pointer;
 	
-	public Transform gunBarrelTransform;
+	public Deactivate deactivateButton;
+	
 	
 	
 	// Use this for initialization
 	void Start () {
-		audioSource = GetComponent<AudioSource>();
-		audioSource.clip = clip;
+
 	}
 	
 	// Update is called once per frame
@@ -29,34 +26,47 @@ public class ControllerScript : MonoBehaviour
 	
 	void Update () 
 	{
-		if(Input.GetButtonDown("Fire1"))
+		if(Input.GetButtonUp("Fire1") || OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
 		{
-			audioSource.Play();
 			RaycastGun();
 			Debug.Log("Pressed primary button.");
 		}
 	}
 	
-	//if(Physics.Raycast(gunBarrelTransform.position, gunBarrelTransform.forward, out hit))
+	//if(Physics.Raycast(Pointer.position, Pointer.forward, out hit))
 		
-	//Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+	//Ray inputRay = Camera.main.ScreenPointToRay(Mouse.position);
 	//if(Physics.Raycast(inputRay, out hit))
 	
 		private void RaycastGun()
 	{
-		Ray inputRay = Camera.main.ScreenPointToRay(gunBarrelTransform.position);
 		RaycastHit hit;
 		
-		Debug.DrawRay(gunBarrelTransform.position, gunBarrelTransform.forward, Color.white);
+		Debug.DrawRay(Pointer.position, Pointer.forward, Color.white);
 		
-		if(Physics.Raycast(gunBarrelTransform.position, gunBarrelTransform.forward, out hit))
+		if(Physics.Raycast(Pointer.position, Pointer.forward, out hit))
 		{
-			if(hit.collider.gameObject.CompareTag("SpherePart") == true)
+			
+			Pointer.GetComponent<LineRenderer>().SetPosition(0, new Vector3(Pointer.transform.position.x, Pointer.transform.position.y, Pointer.transform.position.z));
+			Pointer.GetComponent<LineRenderer>().SetPosition(1, hit.point);	
+			Pointer.GetComponent<LineRenderer>().SetWidth(0.1f, 0.1f);
+			StartCoroutine("ExecuteAfterTime");
+			
+			if(hit.collider.gameObject.CompareTag("Button") == true)
 			{
-				Destroy(hit.collider.gameObject);
-				Debug.Log("Destroyed.");
+				deactivateButton.pressButton();
+				Debug.Log("Pressed.");
 				Debug.Log(hit.point);
 			}
 		}
 	}
+	
+	IEnumerator ExecuteAfterTime()
+	{
+		Debug.Log("Executed");
+     yield return new WaitForSeconds(0.02f);
+		Pointer.GetComponent<LineRenderer>().SetWidth(0, 0);
+	}
+	
+	
 }

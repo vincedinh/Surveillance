@@ -15,6 +15,11 @@ public class PlayerHealth : MonoBehaviour
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
 	public GameObject input;
 	public GameObject playerCam;
+	public GameObject playerVoice;
+	public GameObject playerModel;
+	
+	public AudioSource gameOver;
+	public AudioClip akhilaGameOver;
 
 
     Animator anim;
@@ -26,10 +31,11 @@ public class PlayerHealth : MonoBehaviour
 
     void Awake ()
     {
-        anim = GetComponent <Animator> ();
-        playerAudio = GetComponent <AudioSource> ();
+        anim = playerModel.GetComponent <Animator> ();
+        playerAudio = playerVoice.GetComponent<AudioSource>();
         playerMovement = GetComponent <Move> ();
         currentHealth = startingHealth;
+	
     }
 
 
@@ -49,6 +55,7 @@ public class PlayerHealth : MonoBehaviour
 		{
 			input.GetComponent<Move>().enabled = false;
 			playerCam.GetComponent<CamMovement>().enabled = false;
+			anim.SetBool("isAlive", false);
 			
 		}
     }
@@ -75,15 +82,29 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
 
-
         anim.SetTrigger ("Die");
 
+		
+		
         playerAudio.clip = deathClip;
-        playerAudio.Play ();
-
-        playerMovement.enabled = false;
+		playerAudio.Play();
+		
+		
+		StartCoroutine("ExecuteAudioAfterTime");
+		
+		
+		playerMovement.enabled = false;
         //playerShooting.enabled = false;
     }
+	
+	IEnumerator ExecuteAudioAfterTime()
+	{
+		Debug.Log("AudioWait");
+     yield return new WaitForSeconds(3);
+ 
+		gameOver.clip = akhilaGameOver;
+		gameOver.Play();
+	}
 
 
     public void RestartLevel ()

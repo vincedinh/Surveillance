@@ -4,7 +4,7 @@ C:/adb/surv2.apk
 SceneListBegin?
 Assets/Scenes/SampleScene.unity
 SceneListEnd?
-d7a5b8fd3885f07be8fbbb27a168aa74 Assembly-CSharp.dll:.ControllerScript
+4911e2fa255a6cdf5d2965dd86ffa5f9 Assembly-CSharp.dll:.ControllerScript
 a935519ff56e5eee54d08ee4da0929a0 Assembly-CSharp.dll:.OVRMixedRealityCaptureSettings
 7df47d262399a6f845c2ed06b92cba9b Assembly-CSharp.dll:.OVRCameraRig
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -19,6 +19,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 30afa8783a8bbee2e465ec9ce1efaee2 UnityEngine.Timeline.dll:UnityEngine.Timeline.GroupTrack
 30afa8783a8bbee2e465ec9ce1efaee2 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 607d64d2c4bc76ac9876e6f7b9cc7edf UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
+437a323ff4cdb839e0d47281ad134ad6 Assembly-CSharp.dll:.GameOverManager
 bfddcc339fade781f72a7bb9403d51f3 Assembly-CSharp.dll:.OVRGazePointer
 5979728add95abdc642051d92f726e95 Assembly-CSharp.dll:.OVRDebugHeadController
 09da61ba0ef26d77645f23cec252b635 Assembly-CSharp.dll:.OVRManager
@@ -88,6 +89,7 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 943b7254c3fc072a11fcf5f0122d2550 Assembly-CSharp.dll:.OVRPlayerController
+2b5bd81c259c691324a17af9a3e97e85 Assembly-CSharp.dll:.PositionStart
 537843cf8c7f8ab266c7cd1191ca22fb Assembly-CSharp.dll:.OVRProfiler
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 cf455f7a806648c6ed4c7d3e3f8a0e03 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -127,6 +129,8 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 e260426351ec92be2f530452a4fbec58 Assembly-CSharp.dll:.OVROverlay
 553028ff2845bac843ab4c26e781c024 Assembly-CSharp.dll:.OVRProgressIndicator
 fd044a1720acfc095b3d34c48014e048 Assembly-CSharp.dll:.OVRPlatformMenu
+e3bfb26d2f8a8a39f24d324d3d226cc1 Assembly-CSharp.dll:CameraController.CameraController
+0de88d96fd292d919299f7af4af26e8d Assembly-CSharp.dll:.IdleChanger
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.OVRDebugInfo
 9a93f748b7c6fda90f20cf8d995df907 Assembly-CSharp.dll:.OVRResetOrientation
 8535dae6224e7a25c4aaa54ab9b4f894 Assembly-CSharp.dll:.OVRScreenFade
@@ -149,9 +153,11 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
+a1ce0c3141be3ae70808d64035a67a88 Assembly-CSharp.dll:.ThirdPersonCamera
 7b7745d8d1ab7fe13f98bfffbf52c18d Assembly-CSharp.dll:.OVRWaitCursor
 ccd25ccca39fd5159c3471f7762e1ced Assembly-CSharp.dll:.OVRChromaticAberration
 3390da0fa445ab5d676b24efb56cf5c0 Assembly-CSharp.dll:.OVRSceneSampleController
+998c570f84856acafa7bd7b04e94e163 Assembly-CSharp.dll:.AnimationManager
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 f02726adeff0a3ec5905565234b372da UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
@@ -172,9 +178,15 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 7e926316ce20e4d45cb9a9aebc6e79e9 Assembly-CSharp.dll:.OVRGridCube
 537843cf8c7f8ab266c7cd1191ca22fb Assembly-CSharp.dll:.OVRLint
+a6333fe17f3ba5399bffd336348da6c8 Assembly-CSharp.dll:.FaceUpdate
 715ee802f49103c54cba7971ac57cac0 Assembly-CSharp.dll:UnityEngine.EventSystems.OVRInputModule
 584795015275d7765225ad872c0e8bd8 Assembly-CSharp.dll:.OVRGrabber
-9459388cf81a8e35daeb9309d3dfbff8 Assembly-CSharp.dll:.PlayerHealth
-96cc8be416c4128106c2ea8f1b56fec0 Assembly-CSharp.dll:.CamMovement
-c17a2c41a7e78bcb17f9f0ef0c877471 Assembly-CSharp.dll:.Move
+354f16527a0547cf08e5ca3359f2bcbc Assembly-CSharp.dll:.PlayerHealth
+00a151844dbacabd8a6d3807a4d0f53d Assembly-CSharp.dll:.UnityChanControlScriptWithRgidBody
+141850340afbff9e56fecad0bb5780ee Assembly-CSharp.dll:.CamMovement
+0005c2f7da45a7daf7452f8f0eec9c68 Assembly-CSharp.dll:.Move
 a0713e25b51061ac05006eda939e66e9 Assembly-CSharp.dll:.LaserDamage
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SceneLoader
+97e14133a2a9bbfa684b22b97cb5c7a8 Assembly-CSharp.dll:.Deactivate
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PointerLocation
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LineRendererPosition

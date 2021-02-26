@@ -13,24 +13,22 @@ public class LaserDamage : MonoBehaviour {
 	public GameObject player2;
 	
 	public bool playerInRange;
+	
 	// Use this for initialization
 	void Start () 
 	{
-		
+
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if(playerInRange)
+		if(playerInRange && playerHealth.currentHealth > 0)
 		{
 			Damage();
 			Debug.Log("Player is in range");
 		}
-		if(playerHealth.currentHealth <= 0)
-		{
-			anim.SetTrigger("PlayerDead");
-		}
+			
 	}
 	
 	void OnTriggerEnter (Collider other)
@@ -56,6 +54,8 @@ public class LaserDamage : MonoBehaviour {
 		if(playerHealth.currentHealth > 0)
 		{
 			playerHealth.TakeDamage(damageAmount);
+			anim.SetTrigger("Hurt");
 		}
 	}
+	
 }

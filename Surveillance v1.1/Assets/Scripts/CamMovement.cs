@@ -8,25 +8,33 @@ public class CamMovement : MonoBehaviour {
 	public Transform SurvCam;
 	public Transform FPCam; 
 	public CapsuleCollider survcollider;
-	public CapsuleCollider fpcollider;
+	public Collider fpcollider;
 	public Rigidbody body;
+	
+	public GameObject face;
+	public GameObject meshBody;
 	
 	public Material invisible;
 	public Material survViewMat;
 	public GameObject protagonist;
+	
+	public GameObject controller;
+	public GameObject gun;
+	public GameObject inputManager;
+	
 	
 	// Use this for initialization
 	void Start () {
 		if(curpos == 0)
 		{
 			body.useGravity = false;
-			protagonist.GetComponent<MeshRenderer>().material = survViewMat;
 		}
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if( OVRInput.Get(OVRInput.Button.PrimaryTouchpad) || Input.GetKeyUp(KeyCode.Space) ) 
+		if( OVRInput.GetUp(OVRInput.Button.PrimaryTouchpad) || Input.GetKeyUp(KeyCode.Space) ) 
 		{
 			Swap();
 			Debug.Log("Pressed");
@@ -35,21 +43,39 @@ public class CamMovement : MonoBehaviour {
 		
 		if(curpos == 1)
 		{
-			transform.position = FPCam.transform.position;
+			transform.position = new Vector3(FPCam.transform.position.x, 1.551f, FPCam.transform.position.z);
 			transform.rotation = FPCam.transform.rotation;
 			survcollider.enabled = true;
 			fpcollider.enabled = false;
 			body.detectCollisions = true;
-			protagonist.GetComponent<MeshRenderer>().material = invisible;
 			body.isKinematic = false;
+			
+			face.SetActive(false);
+			meshBody.SetActive(false);
+			protagonist.SetActive(false);
+			
+			
+			controller.SetActive(false);
+			gun.SetActive(true);
+			inputManager.GetComponent<ControllerScript>().enabled = false;
+			inputManager.GetComponent<GunScript>().enabled = true;
+			
 		}
 		if(curpos == 0)
 		{
 			survcollider.enabled = false;
 			fpcollider.enabled = true;
 			body.detectCollisions = false;
-			protagonist.GetComponent<MeshRenderer>().material = survViewMat;
 			body.isKinematic = true;
+			
+			face.SetActive(true);
+			meshBody.SetActive(true);
+			protagonist.SetActive(true);
+			
+			controller.SetActive(true);
+			gun.SetActive(false);
+			inputManager.GetComponent<ControllerScript>().enabled = true;
+			inputManager.GetComponent<GunScript>().enabled = false;
 		}
 	}
 	
@@ -57,7 +83,7 @@ public class CamMovement : MonoBehaviour {
 	{
 		if(curpos == 0)
 		{
-			transform.position = FPCam.position;
+			transform.position = new Vector3(FPCam.position.x + 0.011009f, 1.551f, FPCam.position.z + 0.019077f);
 			transform.rotation = FPCam.rotation;
 			curpos = curpos+1;
 		}
@@ -69,6 +95,16 @@ public class CamMovement : MonoBehaviour {
 			transform.rotation = SurvCam.rotation;
 			curpos = curpos-1;
 		}
+		
+	}
+	
+	public bool Pressable()
+	{
+		if(curpos == 0)
+		{
+		return true;
+		}
+			return false;
 		
 	}
 }
