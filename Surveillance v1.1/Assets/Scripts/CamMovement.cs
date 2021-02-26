@@ -41,6 +41,7 @@ public class CamMovement : MonoBehaviour {
 			fpcollider.enabled = false;
 			body.detectCollisions = true;
 			protagonist.GetComponent<MeshRenderer>().material = invisible;
+			body.isKinematic = false;
 		}
 		if(curpos == 0)
 		{
@@ -48,6 +49,7 @@ public class CamMovement : MonoBehaviour {
 			fpcollider.enabled = true;
 			body.detectCollisions = false;
 			protagonist.GetComponent<MeshRenderer>().material = survViewMat;
+			body.isKinematic = true;
 		}
 	}
 	
