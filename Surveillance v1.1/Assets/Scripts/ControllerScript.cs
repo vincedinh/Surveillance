@@ -26,7 +26,7 @@ public class ControllerScript : MonoBehaviour
 	
 	void Update () 
 	{
-		if(Input.GetButtonUp("Fire1") || OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
+		if(Input.GetButtonUp("Fire1") || OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
 		{
 			RaycastGun();
 			Debug.Log("Pressed primary button.");
@@ -49,7 +49,7 @@ public class ControllerScript : MonoBehaviour
 			
 			Pointer.GetComponent<LineRenderer>().SetPosition(0, new Vector3(Pointer.transform.position.x, Pointer.transform.position.y, Pointer.transform.position.z));
 			Pointer.GetComponent<LineRenderer>().SetPosition(1, hit.point);	
-			Pointer.GetComponent<LineRenderer>().SetWidth(0.1f, 0.1f);
+			Pointer.GetComponent<LineRenderer>().SetWidth(0.3f, 0.3f);
 			StartCoroutine("ExecuteAfterTime");
 			
 			if(hit.collider.gameObject.CompareTag("Button") == true)

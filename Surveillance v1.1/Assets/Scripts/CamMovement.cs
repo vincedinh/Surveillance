@@ -25,6 +25,7 @@ public class CamMovement : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		curpos = 1;
 		if(curpos == 0)
 		{
 			body.useGravity = false;

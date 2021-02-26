@@ -6,6 +6,9 @@ TagManager:
   tags:
   - FPCam
   - Button
+  - Breakable
+  - Wall
+  - Laser
   layers:
   - Default
   - TransparentFX

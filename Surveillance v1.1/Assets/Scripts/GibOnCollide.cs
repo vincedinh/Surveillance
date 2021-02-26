@@ -9,7 +9,7 @@ public class GibOnCollide : MonoBehaviour {
 	
 	void OnCollisionEnter()
 	{
-		Instantiate(gib.transform.position, transform.rotation);
+		Instantiate(gib, transform.position, transform.rotation);
 		Destroy(gameObject);
 	}
 }

@@ -10,8 +10,12 @@ public class Move : MonoBehaviour
 	public GameObject player;
 
 	float distance =  1.0f;
+	float bounce = -0.1f;
+	
+	
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		
 	}
 	
@@ -29,7 +33,14 @@ public class Move : MonoBehaviour
 				cam.transform.position = new Vector3(cam.transform.position.x, 1.551f, cam.transform.position.z);
 				player.transform.position = new Vector3(cam.transform.position.x - 0.011009f, 0.1743003f, cam.transform.position.z - 0.019077f);
 				Debug.Log("pressed w");
-						
+				
+				
+				if(cam.GetComponent<Collider>().gameObject.CompareTag("Wall") == true) //fix this
+				{
+				cam.transform.position = rightEye.transform.position + Camera.main.transform.forward * bounce * Time.deltaTime;
+				player.transform.position = cam.transform.position + Camera.main.transform.forward * bounce * Time.deltaTime;
+				}
+				
 
 			}
 		}
