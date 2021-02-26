@@ -13,6 +13,8 @@ public class GunScript : MonoBehaviour {
 	public float upwardsModifier  = 0.0f;
 	public ForceMode forceMode;
 	
+	public GameObject enemy;
+	
 	
 	// Use this for initialization
 	void Start () {
@@ -63,11 +65,12 @@ public class GunScript : MonoBehaviour {
 					{
 						col.GetComponent<Rigidbody>().AddExplosionForce(force, hit.point, radius, upwardsModifier, forceMode);
 					}	
-				}	
-				
-				//need to change this for second part of gameplay!!
-				
-				
+				}
+			}
+			
+			if(hit.collider.gameObject.CompareTag("Enemy") == true)
+			{
+				hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(15);
 			}
 		}
 	}

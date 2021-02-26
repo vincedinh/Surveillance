@@ -17,15 +17,19 @@ public class PlayerHealth : MonoBehaviour
 	public GameObject playerCam;
 	public GameObject playerVoice;
 	public GameObject playerModel;
+	public Animation deathAnimation;
 	
 	public AudioSource gameOver;
 	public AudioClip akhilaGameOver;
+	
+	bool isDead;
+	
 
 
     Animator anim;
     AudioSource playerAudio;
     Move playerMovement;
-    bool isDead;
+    bool isDying;
     bool damaged;
 
 
@@ -35,6 +39,8 @@ public class PlayerHealth : MonoBehaviour
         playerAudio = playerVoice.GetComponent<AudioSource>();
         playerMovement = GetComponent <Move> ();
         currentHealth = startingHealth;
+		
+		isDying = false;
 	
     }
 
@@ -55,7 +61,14 @@ public class PlayerHealth : MonoBehaviour
 		{
 			input.GetComponent<Move>().enabled = false;
 			playerCam.GetComponent<CamMovement>().enabled = false;
-			anim.SetBool("isAlive", false);
+			
+			if(currentHealth <= 0 && isDying == false)
+			{
+			anim.SetTrigger("Die");
+			isDying = true;
+			}
+			
+			
 			
 		}
     }
@@ -70,6 +83,7 @@ public class PlayerHealth : MonoBehaviour
         healthSlider.value = currentHealth;
 
         playerAudio.Play ();
+		anim.SetTrigger("Hurt");
 
         if(currentHealth <= 0 && !isDead)
         {
@@ -82,7 +96,6 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
 
-        anim.SetTrigger ("Die");
 
 		
 		
@@ -111,6 +124,10 @@ public class PlayerHealth : MonoBehaviour
     {
         SceneManager.LoadScene (0);
     }
+	
+
+	
+	
 	
 
 }

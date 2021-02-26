@@ -8,6 +8,7 @@ public class ControllerScript : MonoBehaviour
 	public Transform Pointer;
 	
 	public Deactivate deactivateButton;
+	public VentScript ventScript;
 	
 	
 	
@@ -26,7 +27,7 @@ public class ControllerScript : MonoBehaviour
 	
 	void Update () 
 	{
-		if(Input.GetButtonUp("Fire1") || OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
+		if(Input.GetButtonUp("Fire1") || OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
 		{
 			RaycastGun();
 			Debug.Log("Pressed primary button.");
@@ -58,6 +59,14 @@ public class ControllerScript : MonoBehaviour
 				Debug.Log("Pressed.");
 				Debug.Log(hit.point);
 			}
+			
+			if(hit.collider.gameObject.CompareTag("VentButton") == true)
+			{
+				ventScript.pressButton();
+				Debug.Log("Pressed.");
+				Debug.Log(hit.point);
+			}
+			
 		}
 	}
 	

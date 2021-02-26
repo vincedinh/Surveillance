@@ -7,6 +7,7 @@ public class CamMovement : MonoBehaviour {
 	public int curpos = 0;
 	public Transform SurvCam;
 	public Transform FPCam; 
+	public Transform SurvCam2;
 	public CapsuleCollider survcollider;
 	public Collider fpcollider;
 	public Rigidbody body;
@@ -22,14 +23,12 @@ public class CamMovement : MonoBehaviour {
 	public GameObject gun;
 	public GameObject inputManager;
 	
+	public GameObject secFrame;
 	
 	// Use this for initialization
 	void Start () {
 		curpos = 1;
-		if(curpos == 0)
-		{
-			body.useGravity = false;
-		}
+		
 
 	}
 	
@@ -60,9 +59,10 @@ public class CamMovement : MonoBehaviour {
 			gun.SetActive(true);
 			inputManager.GetComponent<ControllerScript>().enabled = false;
 			inputManager.GetComponent<GunScript>().enabled = true;
+			secFrame.SetActive(false);
 			
 		}
-		if(curpos == 0)
+		if(curpos == 0 || curpos == 2 || curpos == 3)
 		{
 			survcollider.enabled = false;
 			fpcollider.enabled = true;
@@ -77,6 +77,8 @@ public class CamMovement : MonoBehaviour {
 			gun.SetActive(false);
 			inputManager.GetComponent<ControllerScript>().enabled = true;
 			inputManager.GetComponent<GunScript>().enabled = false;
+			
+			secFrame.SetActive(true);
 		}
 	}
 	
@@ -94,14 +96,20 @@ public class CamMovement : MonoBehaviour {
 			
 			transform.position = SurvCam.position;
 			transform.rotation = SurvCam.rotation;
-			curpos = curpos-1;
+			curpos = curpos+1;
+		}
+		else if(curpos == 2)
+		{
+			transform.position = SurvCam2.position;
+			transform.rotation = SurvCam2.rotation;
+			curpos = 0;
 		}
 		
 	}
 	
 	public bool Pressable()
 	{
-		if(curpos == 0)
+		if(curpos == 0 || curpos == 2 || curpos == 3)
 		{
 		return true;
 		}
